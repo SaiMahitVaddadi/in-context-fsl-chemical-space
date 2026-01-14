@@ -96,8 +96,9 @@ def run_baseline(episode: Dict[str, Any], baseline_type: str,
                 sim = similarity_calc.similarity(query_smiles_single, support_smiles_single)
                 similarities.append((sim, support_label))
             
-            similarities.sort(reverse=True)
-            predictions.append(similarities[0][1])
+            # Use max instead of sort for efficiency
+            best_sim, best_label = max(similarities, key=lambda x: x[0])
+            predictions.append(best_label)
         
         predictions = np.array(predictions)
     

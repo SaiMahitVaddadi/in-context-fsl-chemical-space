@@ -85,8 +85,9 @@ class TfidfSimilarity:
         Returns:
             TF-IDF matrix
         """
-        self.fit(smiles_list)
-        return self.transform(smiles_list)
+        processed = [' '.join(self._tokenize(s)) for s in smiles_list]
+        self.vectorizer = TfidfVectorizer()
+        return self.vectorizer.fit_transform(processed).toarray()
     
     def similarity(self, smiles1: str, smiles2: str) -> float:
         """
@@ -170,8 +171,9 @@ class BagOfWordsSimilarity:
         Returns:
             BoW matrix
         """
-        self.fit(smiles_list)
-        return self.transform(smiles_list)
+        processed = [' '.join(self._tokenize(s)) for s in smiles_list]
+        self.vectorizer = CountVectorizer(binary=self.binary)
+        return self.vectorizer.fit_transform(processed).toarray()
     
     def similarity(self, smiles1: str, smiles2: str) -> float:
         """

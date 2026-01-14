@@ -80,9 +80,10 @@ class BaselineModel:
                 'f1_score': f1_score(y, predictions, average='weighted')
             }
         else:
+            mse = mean_squared_error(y, predictions)
             return {
-                'mse': mean_squared_error(y, predictions),
-                'rmse': np.sqrt(mean_squared_error(y, predictions)),
+                'mse': mse,
+                'rmse': np.sqrt(mse),
                 'r2': r2_score(y, predictions)
             }
 
