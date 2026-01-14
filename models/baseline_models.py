@@ -6,10 +6,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC, SVR
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score, mean_squared_error, r2_score, f1_score
-
 import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from pathlib import Path
+
+# Add parent directory to path to allow imports when models module is imported from scripts
+if __name__ != '__main__':
+    parent = Path(__file__).parent.parent
+    if str(parent) not in sys.path:
+        sys.path.insert(0, str(parent))
 
 from utils.smiles_utils import (
     extract_all_ngrams,

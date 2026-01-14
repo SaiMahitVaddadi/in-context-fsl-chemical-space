@@ -106,7 +106,7 @@ class TfidfSimilarity:
         return cosine_similarity(vectors[0], vectors[1])
 
 
-class BagOfWordsSimiliarity:
+class BagOfWordsSimilarity:
     """Bag-of-Words based similarity for SMILES strings."""
     
     def __init__(self, char_level: bool = False, binary: bool = False):
@@ -358,7 +358,7 @@ def get_baseline_similarity(baseline_type: str, **kwargs):
     if baseline_type == 'tfidf':
         return TfidfSimilarity(**kwargs)
     elif baseline_type == 'bow':
-        return BagOfWordsSimiliarity(**kwargs)
+        return BagOfWordsSimilarity(**kwargs)
     elif baseline_type == 'ngram':
         return NGramSimilarity(**kwargs)
     elif baseline_type == 'edit':

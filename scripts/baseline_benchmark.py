@@ -6,9 +6,11 @@ import json
 from typing import List, Dict, Any
 import numpy as np
 import sys
-import os
+from pathlib import Path
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add parent directory to path to allow imports when running as script
+if __name__ == '__main__':
+    sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from models.baseline_models import NGramMLBaseline, get_baseline_model
 from utils.baselines import get_baseline_similarity
