@@ -215,18 +215,18 @@ class MetaGraph:
             Dictionary of graph statistics
         """
         stats = {
-            'num_nodes': self.graph.number_of_nodes(),
-            'num_edges': self.graph.number_of_edges(),
-            'density': nx.density(self.graph),
-            'is_connected': nx.is_connected(self.graph),
-            'num_connected_components': nx.number_connected_components(self.graph),
+            'num_nodes': int(self.graph.number_of_nodes()),
+            'num_edges': int(self.graph.number_of_edges()),
+            'density': float(nx.density(self.graph)),
+            'is_connected': bool(nx.is_connected(self.graph)),
+            'num_connected_components': int(nx.number_connected_components(self.graph)),
         }
         
         if self.graph.number_of_edges() > 0:
             degrees = [d for n, d in self.graph.degree()]
-            stats['avg_degree'] = np.mean(degrees)
-            stats['max_degree'] = np.max(degrees)
-            stats['min_degree'] = np.min(degrees)
+            stats['avg_degree'] = float(np.mean(degrees))
+            stats['max_degree'] = int(np.max(degrees))
+            stats['min_degree'] = int(np.min(degrees))
         
         return stats
     

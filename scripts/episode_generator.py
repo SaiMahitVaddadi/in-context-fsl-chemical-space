@@ -219,7 +219,7 @@ def generate_episode_features(
     '--input',
     '-i',
     'input_file',
-    required=True,
+    required=False,
     type=click.Path(exists=True),
     help='Input file with molecules (JSON or CSV)'
 )
@@ -227,7 +227,7 @@ def generate_episode_features(
     '--output',
     '-o',
     'output_file',
-    required=True,
+    required=False,
     type=click.Path(),
     help='Output JSON file for episode data'
 )
@@ -354,6 +354,10 @@ def main(
         for name, model_id in ModelLoader.list_supported_models().items():
             click.echo(f"  {name}: {model_id}")
         return
+    
+    # Validate required options for normal operation
+    if not input_file or not output_file:
+        raise click.UsageError("--input and --output are required (unless using --list-* options)")
     
     # Load molecules
     click.echo(f"Loading molecules from: {input_file}")

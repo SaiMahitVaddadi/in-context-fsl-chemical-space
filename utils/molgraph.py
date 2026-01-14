@@ -185,19 +185,19 @@ class MolecularGraph:
         mol = Chem.MolFromSmiles(smiles)
         
         properties = {
-            'num_nodes': G.number_of_nodes(),
-            'num_edges': G.number_of_edges(),
-            'density': nx.density(G),
-            'is_connected': nx.is_connected(G),
-            'num_connected_components': nx.number_connected_components(G),
-            'molecular_weight': Descriptors.MolWt(mol) if mol else None,
-            'num_rings': Descriptors.RingCount(mol) if mol else None,
+            'num_nodes': int(G.number_of_nodes()),
+            'num_edges': int(G.number_of_edges()),
+            'density': float(nx.density(G)),
+            'is_connected': bool(nx.is_connected(G)),
+            'num_connected_components': int(nx.number_connected_components(G)),
+            'molecular_weight': float(Descriptors.MolWt(mol)) if mol else None,
+            'num_rings': int(Descriptors.RingCount(mol)) if mol else None,
         }
         
         # Add degree statistics
         degrees = [d for n, d in G.degree()]
         if degrees:
-            properties['avg_degree'] = sum(degrees) / len(degrees)
-            properties['max_degree'] = max(degrees)
+            properties['avg_degree'] = float(sum(degrees) / len(degrees))
+            properties['max_degree'] = int(max(degrees))
         
         return properties
