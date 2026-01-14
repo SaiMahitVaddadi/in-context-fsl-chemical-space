@@ -42,6 +42,14 @@ class TfidfSimilarity:
         else:
             return tokenize_smiles_token(smiles)
     
+    def _create_vectorizer(self) -> TfidfVectorizer:
+        """Create and return a configured TfidfVectorizer."""
+        return TfidfVectorizer(
+            ngram_range=(1, self.max_n),
+            analyzer='word',
+            token_pattern=r'(?u)\S+'
+        )
+    
     def fit(self, smiles_list: List[str]):
         """
         Fit TF-IDF vectorizer on SMILES list.
@@ -52,11 +60,7 @@ class TfidfSimilarity:
         # Preprocess: tokenize and join with spaces
         processed = [' '.join(self._tokenize(s)) for s in smiles_list]
         
-        self.vectorizer = TfidfVectorizer(
-            ngram_range=(1, self.max_n),
-            analyzer='word',
-            token_pattern=r'(?u)\S+'
-        )
+        self.vectorizer = self._create_vectorizer()
         self.vectorizer.fit(processed)
         
     def transform(self, smiles_list: List[str]) -> np.ndarray:
@@ -86,11 +90,7 @@ class TfidfSimilarity:
             TF-IDF matrix
         """
         processed = [' '.join(self._tokenize(s)) for s in smiles_list]
-        self.vectorizer = TfidfVectorizer(
-            ngram_range=(1, self.max_n),
-            analyzer='word',
-            token_pattern=r'(?u)\S+'
-        )
+        self.vectorizer = self._create_vectorizer()
         return self.vectorizer.fit_transform(processed).toarray()
     
     def similarity(self, smiles1: str, smiles2: str) -> float:
@@ -133,6 +133,14 @@ class BagOfWordsSimilarity:
         else:
             return tokenize_smiles_token(smiles)
     
+    def _create_vectorizer(self) -> CountVectorizer:
+        """Create and return a configured CountVectorizer."""
+        return CountVectorizer(
+            analyzer='word',
+            token_pattern=r'(?u)\S+',
+            binary=self.binary
+        )
+    
     def fit(self, smiles_list: List[str]):
         """
         Fit BoW vectorizer on SMILES list.
@@ -142,11 +150,7 @@ class BagOfWordsSimilarity:
         """
         processed = [' '.join(self._tokenize(s)) for s in smiles_list]
         
-        self.vectorizer = CountVectorizer(
-            analyzer='word',
-            token_pattern=r'(?u)\S+',
-            binary=self.binary
-        )
+        self.vectorizer = self._create_vectorizer()
         self.vectorizer.fit(processed)
         
     def transform(self, smiles_list: List[str]) -> np.ndarray:
@@ -176,11 +180,7 @@ class BagOfWordsSimilarity:
             BoW matrix
         """
         processed = [' '.join(self._tokenize(s)) for s in smiles_list]
-        self.vectorizer = CountVectorizer(
-            analyzer='word',
-            token_pattern=r'(?u)\S+',
-            binary=self.binary
-        )
+        self.vectorizer = self._create_vectorizer()
         return self.vectorizer.fit_transform(processed).toarray()
     
     def similarity(self, smiles1: str, smiles2: str) -> float:
