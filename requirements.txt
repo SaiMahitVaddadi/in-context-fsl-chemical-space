@@ -8,8 +8,5 @@ espsim>=2.0.0
 # Graph and Network Analysis
 networkx>=3.0
 
-# CLI and argument parsing
-argparse
-
 # Optional but recommended
 scipy>=1.10.0
