@@ -198,7 +198,12 @@ def generate_episode_features(
             
             # Add embeddings to molecule features
             for idx, emb in enumerate(embeddings):
-                episode_data['molecules'][idx]['model_embedding'] = emb.cpu().numpy().tolist()
+                # Move to CPU if needed and convert to list
+                if hasattr(emb, 'cpu'):
+                    emb_array = emb.cpu().numpy()
+                else:
+                    emb_array = emb.numpy()
+                episode_data['molecules'][idx]['model_embedding'] = emb_array.tolist()
             
             episode_data['statistics']['embedding_dim'] = embeddings.shape[1]
             

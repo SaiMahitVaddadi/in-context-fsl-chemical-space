@@ -266,7 +266,9 @@ class SimilarityMetrics:
         similarity_matrix = np.zeros((n, n))
         
         for i in range(n):
-            similarity_matrix[i, i] = 1.0  # Self-similarity is 1
+            # Self-similarity: 1.0 if fingerprint is valid, 0.0 otherwise
+            if fingerprints[i] is not None:
+                similarity_matrix[i, i] = 1.0
             for j in range(i + 1, n):
                 sim = cls.calculate(fingerprints[i], fingerprints[j], metric)
                 similarity_matrix[i, j] = sim

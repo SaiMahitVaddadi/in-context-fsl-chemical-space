@@ -201,7 +201,7 @@ class MetaGraph:
         # Sort by average edge weight (similarity)
         def get_avg_similarity(neighbor_idx):
             edge_data = self.graph[node_idx][neighbor_idx]
-            similarities = [v for k, v in edge_data.items() if 'similarity' in k.lower() or 'tanimoto' in k.lower() or 'dice' in k.lower()]
+            similarities = [v for edge_key, v in edge_data.items() if 'similarity' in edge_key.lower() or 'tanimoto' in edge_key.lower() or 'dice' in edge_key.lower()]
             return np.mean(similarities) if similarities else 0.0
         
         neighbors.sort(key=get_avg_similarity, reverse=True)
