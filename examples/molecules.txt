@@ -1,0 +1,10 @@
+# Example molecules for testing
+# Small organic molecules with diverse structures
+CCO
+CC(C)O
+CCCO
+CCCCO
+c1ccccc1
+Cc1ccccc1
+c1ccccc1O
+CC(=O)O
