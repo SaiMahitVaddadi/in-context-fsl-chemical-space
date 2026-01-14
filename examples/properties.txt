@@ -1,0 +1,9 @@
+# Example property values (for regression tasks)
+0.789
+0.845
+0.654
+0.532
+0.923
+0.876
+0.745
+0.612
