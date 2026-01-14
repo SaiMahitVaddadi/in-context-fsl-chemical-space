@@ -1,0 +1,104 @@
+[
+  {
+    "support": {
+      "smiles": [
+        "CCO",
+        "CC(C)O",
+        "CCCO",
+        "CC(C)(C)O",
+        "CCCCO"
+      ],
+      "labels": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    "query": {
+      "smiles": [
+        "c1ccccc1",
+        "c1ccccc1O",
+        "c1ccccc1C"
+      ],
+      "labels": [
+        1,
+        1,
+        0
+      ]
+    },
+    "baseline_results": {
+      "tfidf": {
+        "baseline_type": "tfidf",
+        "predictions": [
+          0,
+          0,
+          0
+        ],
+        "inference_time": 0.006560802459716797,
+        "accuracy": 0.3333333333333333
+      },
+      "bow": {
+        "baseline_type": "bow",
+        "predictions": [
+          0,
+          0,
+          0
+        ],
+        "inference_time": 0.0014429092407226562,
+        "accuracy": 0.3333333333333333
+      },
+      "ngram": {
+        "baseline_type": "ngram",
+        "predictions": [
+          1,
+          0,
+          1
+        ],
+        "inference_time": 0.0007584095001220703,
+        "accuracy": 0.3333333333333333
+      },
+      "edit": {
+        "baseline_type": "edit",
+        "predictions": [
+          1,
+          1,
+          1
+        ],
+        "inference_time": 5.555152893066406e-05,
+        "accuracy": 0.6666666666666666
+      },
+      "jaro": {
+        "baseline_type": "jaro",
+        "predictions": [
+          1,
+          0,
+          0
+        ],
+        "inference_time": 3.1948089599609375e-05,
+        "accuracy": 0.6666666666666666
+      },
+      "ngram-svm": {
+        "baseline_type": "ngram-svm",
+        "predictions": [
+          0,
+          0,
+          0
+        ],
+        "inference_time": 0.0011138916015625,
+        "accuracy": 0.3333333333333333
+      },
+      "logistic": {
+        "baseline_type": "logistic",
+        "predictions": [
+          0,
+          0,
+          0
+        ],
+        "inference_time": 0.0032417774200439453,
+        "accuracy": 0.3333333333333333
+      }
+    }
+  }
+]

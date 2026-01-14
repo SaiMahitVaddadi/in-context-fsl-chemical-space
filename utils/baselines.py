@@ -269,6 +269,19 @@ class NGramSimilarity:
         v2 = np.array([ngrams2.get(ng, 0) for ng in all_ngrams])
         
         return cosine_similarity(v1, v2)
+    
+    def similarity(self, smiles1: str, smiles2: str) -> float:
+        """
+        Calculate similarity between two SMILES (defaults to cosine similarity).
+        
+        Args:
+            smiles1: First SMILES string
+            smiles2: Second SMILES string
+            
+        Returns:
+            Similarity score (0 to 1)
+        """
+        return self.cosine_similarity(smiles1, smiles2)
 
 
 class EditDistanceSimilarity:
