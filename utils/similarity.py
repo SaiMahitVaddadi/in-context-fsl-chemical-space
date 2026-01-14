@@ -8,7 +8,6 @@ from typing import List, Dict, Optional, Callable
 import numpy as np
 from rdkit import Chem
 from rdkit.Chem import AllChem, DataStructs
-from rdkit import DataStructs
 
 from .shape_color_similarity import (
     SHAPE_COLOR_METHODS,
